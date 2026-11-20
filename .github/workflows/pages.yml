@@ -27,10 +27,15 @@ jobs:
         run: npm install
       - name: Build site
         run: npm run build
+      - name: Stage site under /french
+        run: |
+          mkdir -p _site/french
+          cp -R dist/. _site/french/
+          cp CNAME _site/CNAME
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: _site
 
   deploy:
     if: github.event_name != 'pull_request'
