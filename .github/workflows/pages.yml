@@ -30,6 +30,10 @@ jobs:
           cache: pnpm
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+      - name: Type check
+        run: pnpm check
+      - name: Run unit tests
+        run: pnpm test
       - name: Build site
         run: pnpm build
       - name: Stage site under /french
